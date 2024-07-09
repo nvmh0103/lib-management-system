@@ -13,8 +13,6 @@ const sequelize = new Sequelize('lib-management-system', 'postgres', 'password',
       // Perform any database operations here
     } catch (error) {
       console.error('Unable to connect to the database:', error);
-    } finally {
-      await sequelize.close(); // Close the connection
     }
   }
   

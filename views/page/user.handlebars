@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List - Hệ thống quản lý thư viện</title>
+</head>
+
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
+    <header style="background-color: #0275d8; color: white; padding: 20px; text-align: center;">
+        <h1 style="margin: 0;">Hệ thống quản lý thư viện</h1>
+        {{#if username}}
+        <p>Welcome, {{username}}! <a href="/logout" style="color: white; background-color: #ff4136; padding: 5px 10px; text-decoration: none; border-radius: 5px;">Log Out</a></p>
+        {{else}}
+        <p><a href="/login" style="color: white;">Login</a></p>
+        {{/if}}
+    </header>
+    <nav style="background-color: #f8f9fa; padding: 10px; text-align: center;">
+        <a href="/" style="margin-right: 15px; text-decoration: none; color: #0275d8;">Home</a>
+        <a href="/about" style="margin-right: 15px; text-decoration: none; color: #0275d8;">About</a>
+        <a href="/contact" style="text-decoration: none; color: #0275d8;">Contact</a>
+    </nav>
+    <main style="padding: 20px;">
+        <section>
+            <h2>User List</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: #f2f2f2;">
+                        <th style="border: 1px solid #ddd; padding: 8px;">ID</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Username</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Email</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each users}}
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">{{this.id}}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">{{this.username}}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">{{this.email}}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">
+                            <a href="/edit/{{this.id}}" style="margin-right: 10px;">Edit</a>
+                            <a href="/delete/{{this.id}}">Delete</a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer style="background-color: #0275d8; color: white; text-align: center; padding: 10px; position: fixed; bottom: 0; width: 100%;">
+        <p>&copy; 2024 Library Management System</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống quản lý thư viện - Books</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #0275d8;
+            color: white;
+        }
+        tr:nth-child(even){background-color: #f2f2f2;}
+        tr:hover {background-color: #ddd;}
+    </style>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
+    <header style="background-color: #0275d8; color: white; padding: 20px; text-align: center;">
+        <h1 style="margin: 0;">Hệ thống quản lý thư viện</h1>
+        {{#if username}}
+            <p>Welcome, {{username}}! <a href="/logout" style="color: white; background-color: #ff4136; padding: 5px 10px; text-decoration: none; border-radius: 5px;">Log Out</a></p>
+        {{else}}
+            <p><a href="/login" style="color: white;">Login</a></p>
+        {{/if}}
+    </header>
+    <nav style="background-color: #f8f9fa; padding: 10px; text-align: center;">
+        <a href="/" style="margin-right: 15px; text-decoration: none; color: #0275d8;">Home</a>
+        <a href="/about" style="margin-right: 15px; text-decoration: none; color: #0275d8;">About</a>
+        <a href="/contact" style="text-decoration: none; color: #0275d8;">Contact</a>
+    </nav>
+    <main style="padding: 20px;">
+        <section>
+            <h2>Books List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                        <th>Published Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each books}}
+                        <tr>
+                            <td>{{this.title}}</td>
+                            <td>{{this.author}}</td>
+                            <td>{{this.isbn}}</td>
+                            <td>{{this.publishedDate}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer style="background-color: #0275d8; color: white; text-align: center; padding: 10px; position: fixed; bottom: 0; width: 100%;">
+        <p>&copy; 2024 Library Management System</p>
+    </footer>
+</body>
+</html>

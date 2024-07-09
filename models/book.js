@@ -1,6 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require("../repository/db");
 
+class Book extends Model {}
+
 Book.init({
   // Model attributes are defined here
   id: {

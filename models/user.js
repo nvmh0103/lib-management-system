@@ -37,6 +37,11 @@ User.init({
     allowNull: false,
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW // Sequelize handles the default value
+  },
+  role: {
+    type: DataTypes.ENUM('admin', 'user'),
+    allowNull: false,
+    defaultValue: 'user'
   }
 }, {
   // Other model options go here
