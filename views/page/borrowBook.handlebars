@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ thống quản lý thư viện</title>
+    <title>Borrow Book - Hệ thống quản lý thư viện</title>
 </head>
 
 <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
@@ -24,20 +24,18 @@
         <a href="#" style="text-decoration: none; color: #0275d8;">Contact</a>
     </nav>
     <main style="padding: 20px;">
-        <section style="margin-bottom: 20px;">
-            <h2>Welcome to Our Library Management System</h2>
-            <p>Manage your library efficiently and effectively with our comprehensive system.</p>
-        </section>
-        {{#if username}}
         <section>
-            <h2>Features</h2>
-            <ul style="list-style-type: none; padding: 0;">
-                <li style="margin-bottom: 10px;"><a href="/book">Book Management</a></li>
-                <li style="margin-bottom: 10px;"><a href="/user">User Management</a></li>
-                <li style="margin-bottom: 10px;"><a href="/borrow_history">Borrow Management</a></li>
-            </ul>
+            <h2>Borrow a Book</h2>
+            <form action="/borrow" method="POST" style="max-width: 500px; margin: auto;">
+                <label for="bookIsbn" style="display: block; margin-bottom: 5px;">Book isbn:</label>
+                <input value={{isbn}} type="text" id="isbn" name="isbn" required  readonly style="width: 100%; padding: 8px; margin-bottom: 20px;">
+
+                <label for="userId" style="display: block; margin-bottom: 5px;">User email:</label>
+                <input type="text" id="email" name="email" required style="width: 100%; padding: 8px; margin-bottom: 20px;">
+
+                <button type="submit" style="padding: 10px 15px; background-color: #0275d8; color: white; border: none; cursor: pointer;">Borrow Book</button>
+            </form>
         </section>
-        {{/if}}
     </main>
     <footer
         style="background-color: #0275d8; color: white; text-align: center; padding: 10px; position: fixed; bottom: 0; width: 100%;">

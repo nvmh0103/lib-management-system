@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,25 +10,38 @@
             width: 100%;
             border-collapse: collapse;
         }
-        table, th, td {
+
+        table,
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 8px;
         }
+
         th {
             background-color: #0275d8;
             color: white;
         }
-        tr:nth-child(even){background-color: #f2f2f2;}
-        tr:hover {background-color: #ddd;}
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
     </style>
 </head>
+
 <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
     <header style="background-color: #0275d8; color: white; padding: 20px; text-align: center;">
         <h1 style="margin: 0;">Hệ thống quản lý thư viện</h1>
         {{#if username}}
-            <p>Welcome, {{username}}! <a href="/logout" style="color: white; background-color: #ff4136; padding: 5px 10px; text-decoration: none; border-radius: 5px;">Log Out</a></p>
+        <p>Welcome, {{username}}! <a href="/logout"
+                style="color: white; background-color: #ff4136; padding: 5px 10px; text-decoration: none; border-radius: 5px;">Log
+                Out</a></p>
         {{else}}
-            <p><a href="/login" style="color: white;">Login</a></p>
+        <p><a href="/login" style="color: white;">Login</a></p>
         {{/if}}
     </header>
     <nav style="background-color: #f8f9fa; padding: 10px; text-align: center;">
@@ -38,6 +52,14 @@
     <main style="padding: 20px;">
         <section>
             <h2>Books List</h2>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <form action="/book/search" method="GET">
+                    <input type="text" name="isbn" placeholder="Search by ISBN" required
+                        style="padding: 8px; margin-right: 10px;">
+                    <button type="submit"
+                        style="padding: 8px 15px; background-color: #0275d8; color: white; border: none; cursor: pointer;">Search</button>
+                </form>
+            </div>
             <table>
                 <thead>
                     <tr>
@@ -45,23 +67,36 @@
                         <th>Author</th>
                         <th>ISBN</th>
                         <th>Published Date</th>
+                        <th>Borrowed</th> <!-- Additional column for is_borrow field -->
                     </tr>
                 </thead>
                 <tbody>
                     {{#each books}}
-                        <tr>
-                            <td>{{this.title}}</td>
-                            <td>{{this.author}}</td>
-                            <td>{{this.isbn}}</td>
-                            <td>{{this.publishedDate}}</td>
-                        </tr>
+                    <tr>
+                        <td>{{this.title}}</td>
+                        <td>{{this.author}}</td>
+                        <td>{{this.isbn}}</td>
+                        <td>{{this.publishedDate}}</td>
+                        <td>{{#if this.is_borrowed}}Yes{{else}}No{{/if}}</td>
+                        <!-- Display Yes if is_borrow is true, No otherwise -->
+                        <td>{{#if this.is_borrowed}}
+                            <button disabled
+                                style="color: grey; background-color: #cccccc; padding: 5px 10px; text-decoration: none; border-radius: 5px; cursor: not-allowed;">Borrowed</button>
+                            {{else}}
+                            <a href="/borrow/{{this.isbn}}"
+                                style="color: white; background-color: #0275d8; padding: 5px 10px; text-decoration: none; border-radius: 5px;">Borrow</a>
+                            {{/if}}
+                        </td>
+                    </tr>
                     {{/each}}
                 </tbody>
             </table>
         </section>
     </main>
-    <footer style="background-color: #0275d8; color: white; text-align: center; padding: 10px; position: fixed; bottom: 0; width: 100%;">
+    <footer
+        style="background-color: #0275d8; color: white; text-align: center; padding: 10px; position: fixed; bottom: 0; width: 100%;">
         <p>&copy; 2024 Library Management System</p>
     </footer>
 </body>
+
 </html>

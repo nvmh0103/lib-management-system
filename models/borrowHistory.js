@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require("../repository/db");
+const User = require('./user');
 
 class BorrowHistory extends Model {}
 
@@ -56,5 +57,7 @@ BorrowHistory.init({
   tableName: 'borrow_history', // Explicitly specify the table name to match the migration
   timestamps: true, // Enable timestamps
 });
+
+// BorrowHistory.belongsTo(User, { foreignKey: 'userId' });
 
 module.exports = BorrowHistory;
